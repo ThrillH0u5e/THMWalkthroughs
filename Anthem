@@ -1,0 +1,103 @@
+target ip: 
+
+nmap:
+sudo nmap -sS -Pn 10.10.249.165
+Starting Nmap 7.92 ( https://nmap.org ) at 2022-06-07 13:43 PDT
+Nmap scan report for 10.10.249.165
+Host is up (0.17s latency).
+Not shown: 998 filtered tcp ports (no-response)
+PORT     STATE SERVICE
+80/tcp   open  http
+3389/tcp open  ms-wbt-server
+
+Web Server: 80
+
+port for remote desktop service: 3389
+
+
+
+What is a possible password in one of the pages web crawlers check for?
+
+UmbracoIsTheBest!
+
+10.10.249.165/umbraco > /umbraco/#/login
+
+
+UmbracoIsTheBest!
+
+# Use for all search robots
+User-agent: *
+
+# Define the directories not to crawl
+Disallow: /bin/
+Disallow: /config/
+Disallow: /umbraco/
+Disallow: /umbraco_client/
+
+
+What CMS is the website using?
+
+Umbraco
+
+What is the name of the website?
+anthem.com
+
+What's the name of the administrator?
+
+http://10.10.32.198/archive/a-cheers-to-our-it-department/
+
+During our hard times our beloved admin managed to save our business by redesigning the entire website.
+
+As we all around here knows how much I love writing poems I decided to write one about him:
+
+Born on a Monday,
+Christened on Tuesday,
+Married on Wednesday,
+Took ill on Thursday,
+Grew worse on Friday,
+Died on Saturday,
+Buried on Sunday.
+That was the end…     
+
+Google Search: Solomon Grundy 
+
+
+Can we find find the email address of the administrator?
+Given the naming convention for Jane Doe (JD@anthem.com) we can deduce Solomon Grundy's to be sg@anthem.com
+
+sg@anthem.com
+
+
+Spot the flags
+
+1 - THM{L0L_WH0_US3S_M3T4} (OWASP ZAP - Spider Attack TARGET IP})
+2 - THM{G!T_G00D} (OWASP ZAP - Spider Attack TARGET IP})
+3 - THM{L0L_WH0_D15} (http://10.10.249.165/authors/jane-doe/)
+4 - THM{AN0TH3R_M3TA} (OWASP ZAP - Spider Attack TARGET IP})
+
+
+Open up Remote Desktop via Remmina 
+
+Username: SG (Solomon Grundy)
+PW: UmbracoIsTheBest!
+
+User.txt contents: THM{N00T_NO0T}
+
+Navigated to Run>Recent to see if there are any clues/recently edited files.
+
+Found Backup directory and "restore" file that i can't open but I can edit the ownership permissions
+
+Make sure Object Name is set to: C:\backup\restore.txt
+
+Right clicked > Properties > Security Tab > Edit > Add > Added My Username[WIN-LU09299160F\SG] > OK 
+
+ChangeMeBaby1MoreTime
+
+Open up new remmina
+
+Username: administrator
+PW: ChangeMeBaby1MoreTime
+
+Desktop root.txt file.
+
+THM{Y0U_4R3_1337}

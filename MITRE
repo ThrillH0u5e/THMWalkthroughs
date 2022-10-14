@@ -1,0 +1,220 @@
+MITRE Intro Notes
+
+Associated with CVEs
+
+MITRE researches in many areas, outside of cybersecurity, for the 'safety, stability, and well-being of our nation.'  These areas include artificial intelligence, health informatics, space security
+
+Federally funded R&D centers and public-private partnerships
+
+Room's Focus:
+
+    ATT&CK® (Adversarial Tactics, Techniques, and Common Knowledge) Framework
+    CAR (Cyber Analytics Repository) Knowledge Base
+    ENGAGE (sorry, not a fancy acronym)
+    D3FEND (Detection, Denial, and Disruption Framework Empowering Network Defense)
+    AEP (ATT&CK Emulation Plans)
+    
+    
+    APT - Advanced Persistent Threat - 
+    		* Threat Group  - Team/Group
+    		* Nation State Group -long term attacks against organizations and/or countries
+    		
+   TTP - Tactics, Techniques, and Procedures
+   	* Tactics - Adversary's goal or objective.
+   	* Technique - How the adversary achieves the goal or objective
+   	* Procedure - How the technique is executed
+   	
+ Att&CK framework - globally-accessible knowledge base of adversary tactics and techniques based on real-world observations.
+ 
+ Used by both blue and red teams
+ 
+ FMX (Fort Meade Experiment) - Internal experiment where selected security professionals were tasked to emulate adversarial TTPs against a network, and data was collected from the attacks.
+ 
+ https://attack.mitre.org/
+ 
+ Reconnaissance
+ Resource Development
+ Initial Access
+ Execution
+ Persistence
+ Priv Esc
+ Defense Evasion
+ Credential Access
+ Discovery
+ Lateral Movement
+ Collection
+ Command and Control
+ Exfiltration
+ Impact
+ 
+ QUESTIONS
+ 
+Besides blue teamers. who else will use the ATT&CK Matrix?
+Red Teamers (Found in reading)
+
+What is the ID for this technique?
+T1566 (Found on attack.mitre.org under Initial Access > Phishing)
+
+Based on this technique, what mitigation covers identifying social engineering techniques?
+user training ( Initial Access > Phishing > Mitigations)
+
+What are the data sources for Detection?
+
+Application Log, file, Network Traffic (Initial Access > Phishing > Detection)
+
+What groups have used spear-phishing in their campaigns?
+Axiom, Gold Southfield (found Phishing > Procedure Examples)
+
+Based on the information for the first group, what are their associated groups?
+Group 72 (found under Phishing > Procedure Examples > Axiom > Associated Groups)
+ 
+What software is associated with this group that lists phishing as a technique?
+ hikit (found under Phishing > Procedure Examples > Axiom > Software > HiKit is only software to list Phishing)
+ 
+ What is the description for this software?
+Hikit is malware that has been used by Axiom for late-stage persistence and exfiltration after the initial compromise   (found under Phishing > Procedure Examples > Axiom > Software > HiKit)
+  
+This group overlaps (slightly) with which other group?
+Winnti Group (found under Phishing > Procedure Examples > Axiom in description)
+
+How many techniques are attributed to this group? *This one was a little confusing because we were just talking about Winnti group but the question is still referencing Axiom.
+15 (found under Phishing > Procedure Examples > Axiom > Techniques Used)
+
+
+ CAR - Cyber Analytics Repository - a knowledge base of analytics developed by MITRE based on the MITRE ATT&CK® adversary model. 
+ 
+reference -  https://car.mitre.org/analytics/CAR-2020-09-001/
+ 
+Here we're provided with Pseudocode and a query on how to search for this specific analytic within Splunk. A pseudocode is a plain, human-readable way to describe a set of instructions or algorithms that a program or system will perform.
+
+References previous room Sysmon (host-level tracing tool that can help detect advance threats on your network. In contrast to AV/HIDS - sysmon performs system activity deep monitoring and logs high-confidence indicators of advanced attacks.
+
+Attack Navigator CAR - https://mitre-attack.github.io/attack-navigator/#layerURL=https://raw.githubusercontent.com/mitre-attack/car/master/docs/coverage/car_analytic_coverage_04_05_2022.json
+
+
+
+QUESTIONS
+https://car.mitre.org/analytics/CAR-2020-09-001/
+For the above analytic, what is the pseudocode a representation of?
+Splunk search (Found under Implementations)
+
+What tactic has an ID of TA0003?
+Persistence (Found by going to Mitre.org and searching TA0003
+
+What is the name of the library that is a collection of Zeek (BRO) scripts?
+BZAR (Found on homepage of MITRE.org)
+
+
+What is the name of the technique for running executables with the same hash and different names?
+Masquerading (found on full analytics list - https://car.mitre.org/analytics/)
+
+Examine CAR-2013-05-004, besides Implementations, what additional information is provided to analysts to ensure coverage for this technique?
+
+Unit Tests - (https://car.mitre.org/analytics/CAR-2013-05-004/)
+
+MITRE ENGAGE
+
+"framework for planning and discussing adversary engagement operations that empowers you to engage your adversaries and achieve your cybersecurity goals"
+
+Adversary Engagement Approach accomplished by the implementation of:
+ Cyber Denial - prevents adversary's ability to conduct their operations
+ Cyber Deception - intentionally plant artifacts to mislead adversary
+ 
+ "Starter kit" is a collection of whitepapers and PDFs explaining various checklists, methodologies, and processes to get you started. 
+ 
+ Engage Matrix
+ 
+   * Prepare the set of operational actions that will lead to your desired outcome (input)
+   * Expose adversaries when they trigger your deployed deception activities 
+   * Affect adversaries by performing actions that will have a negative impact on their operations
+   * Elicit information by observing the adversary and learn more about their modus operandi (TTPs)
+   * Understand the outcomes of the operational actions (output) 
+   
+QUESTIONS:
+
+Under Prepare, what is ID SAC0002? (ref: https://engage.mitre.org/matrix/)
+Persona Creation
+
+What is the name of the resource to aid you with the engagement activity from the previous question?
+Persona Profile Worksheet (Had to look at the hint on this one. Tool > All Tools > Persona Profile Worksheet)
+
+Which engagement activity baits a specific response from the adversary?
+
+Lures
+
+WHat is the definition of a threat model?
+
+A risk assessment that models organizational strengths and weaknesses  (Found: https://engage.mitre.org/matrix/?activity=threat-model)
+
+
+ D3FEND - A knowledge graph of cybersecurity countermeasures.
+ Stands for - Detection, Denial, and Disruption Framework Empowering Network Defense.
+ 
+ funded by the Cybersecurity Directorate of the NSA.
+ 
+What is the first MITRE ATT&CK technique listed in the ATT&CK Lookup dropdown?
+Data Obfuscation (just click on search dropdown on above website)
+
+In D3FEND Inferred Relationships, what does the ATT&CK technique from the previous question produces?
+ Outbound Internet Network Traffic (Click on Data Obfuscation from dropdown)
+ 
+ 
+ ATT&CK® Emulation Plans 
+ 
+ MITRE ENGENUITY - CTID (Center of Threat Informed Defense), the Adversary Emulation Library, and ATT&CK® Emulation Plans.
+ 
+ CTID- organization consists of various companies and vendors from around the globe with the objective to conduct research on cyber threats and their TTPs and share this research to improve cyber defense for all. 
+ 
+ Participants - 
+    AttackIQ (founder)
+    Verizon
+    Microsoft (founder)
+    Red Canary (founder)
+    Splunk
+    
+ Adversary Emulation Library - public library making adversary emulation plans a free resource for blue/red teamers. 
+ 
+ 
+ QUESTIONS
+ 
+ 
+In Phase 1 for the APT3 Emulation Plan, what is listed first?
+C2 Setup (Found:https://attack.mitre.org/resources/adversary-emulation-plans/)
+ 
+ Under persistence, what binary was replaced with cmd.exe
+ sethc.exe (Found by ctrl Fing "persistence" through https://attack.mitre.org/docs/APT3_Adversary_Emulation_Plan.pdf)
+
+ 
+Examining APT29, what  C2 frameworks are listed in Scenario 1 Infrastructure? (format: tool1,tool2)
+
+pupy,metasploit framework (found under attack platform: https://github.com/center-for-threat-informed-defense/adversary_emulation_library/blob/master/apt29/Emulation_Plan/Scenario_1/Infrastructure.md)
+
+What C2 framework is listed in Scenario 2 Infrastructure?
+PoshC2 (Found under Emulation Team Infrastructure in https://github.com/center-for-threat-informed-defense/adversary_emulation_library/blob/master/apt29/Emulation_Plan/Scenario_2/Infrastructure.md)
+
+Examine the emulation plan for Sandworm. What webshell is used for Scenario 1? Check MITRE ATT&CK for the Software ID for the webshell. What is the id? (format: webshell,id)
+P.A.S.,S0598 ( Found: https://github.com/center-for-threat-informed-defense/adversary_emulation_library/tree/master/sandworm/Emulation_Plan/Scenario_1)
+
+ATT&CK and Threat Intelligence:
+Threat Intelligence (TI) or Cyber Threat Intelligence (CTI) is the information, or TTPs, attributed to the adversary.
+
+Some threat intel can be open source or through a subscription with a vendor, such as CrowdStrike. In contrast, many defenders wear multiple hats (roles) within some organizations, and they need to take time from their other tasks to focus on threat intelligence.
+
+QUESTIONS:
+What is a group that targets your sector who has been in operation since at least 2013? 
+APT33 (MITRE ATT&CK > Groups)
+
+As your organization is migrating to the cloud, is there anything attributed to this APT group that you should focus on? If so, what is it?
+
+Cloud Accounts
+
+What tool is associated with the technique from the previous question?
+ Ruler (attack.mitre.org/techniques/T1078/004)
+ 
+Per the detection tip, what should you be detecting? (format: phrase1 or phrase2)
+abnormal or malicious behavior (found under detection)
+
+What platforms does the technique from question #2 affect?
+Azure AD, Google Workspace, IaaS, Office 365,  SaaS (Found in upper right info panel)
+
+  
